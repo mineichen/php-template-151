@@ -6,15 +6,11 @@ require_once("../vendor/autoload.php");
 $tmpl = new ihrname\SimpleTemplateEngine(__DIR__ . "/../templates/");
 
 switch($_SERVER["REQUEST_URI"]) {
+	case "/testroute":
+		echo "test blabla";
+		break;
 	case "/":
 		(new ihrname\Controller\IndexController($tmpl))->homepage();
-		break;
-	case "/test/upload":
-		if(file_put_contents(__DIR__ . "/../../upload/test.txt", "Mein erster Upload")) {
-			echo "It worked";
-		} else {
-			echo "Error happened";
-		}
 		break;
 	default:
 		$matches = [];
@@ -25,3 +21,9 @@ switch($_SERVER["REQUEST_URI"]) {
 		echo "Not Found";
 }
 
+//case "/test/upload":
+//	if(file_put_contents(__DIR__ . "/../../upload/test.txt", "Mein erster Upload")) {
+//		echo "It worked";
+//	} else {
+//		echo "Error happened";
+//	}
