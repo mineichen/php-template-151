@@ -1,8 +1,8 @@
 <?php
 
-namespace ihrname\Controller;
+namespace mineichen\Controller;
 
-use ihrname\SimpleTemplateEngine;
+use mineichen\SimpleTemplateEngine;
 
 class IndexController 
 {
@@ -20,7 +20,7 @@ class IndexController
   }
 
   public function homepage() {
-    echo "INDEX";
+    echo (array_key_exists("email", $_SESSION)) ? "Welcome " . $_SESSION["email"] : "Hello Mr. X";
   }
 
   public function greet($name) {
