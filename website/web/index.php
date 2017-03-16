@@ -10,7 +10,12 @@ switch($_SERVER["REQUEST_URI"]) {
 		(new mineichen\Controller\IndexController($tmpl))->homepage();
 		break;
 	case "/login":
-		(new mineichen\Controller\LoginController($tmpl))->showLogin();
+		$ctr = new mineichen\Controller\LoginController($tmpl);
+		if($_SERVER["REQUEST_METHOD"] == "GET") {
+			$ctr->showLogin();
+		} else {
+			$ctr->login();
+		}
 		break;
 	default:
 		$matches = [];
