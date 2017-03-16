@@ -1,9 +1,16 @@
 <?php
 
 error_reporting(E_ALL);
+session_start();
 
 require_once("../vendor/autoload.php");
 $tmpl = new mineichen\SimpleTemplateEngine(__DIR__ . "/../templates/");
+$pdo = new \PDO(
+	"mysql:host=mariadb;dbname=app;charset=utf8",
+	"root",
+	"my-secret-pw",
+	[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+);
 
 switch($_SERVER["REQUEST_URI"]) {
 	case "/":
@@ -13,7 +20,13 @@ switch($_SERVER["REQUEST_URI"]) {
 		echo "Test";
 		break;
 	case "/login":
-		(new mineichen\Controller\LoginController($tmpl))->showLogin();
+		$ctr = new mineichen\Controller\LoginController($tmpl, $pdo);
+		if($_SERVER["REQUEST_METHOD"] == "GET") {
+			$ctr->showLogin();
+		} else {
+			$ctr->login($_POST);
+		}
+		
 		break;
 	default:
 		$matches = [];
