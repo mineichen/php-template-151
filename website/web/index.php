@@ -1,16 +1,28 @@
 <?php
 
 error_reporting(E_ALL);
+session_start();
 
 require_once("../vendor/autoload.php");
 $tmpl = new mineichen\SimpleTemplateEngine(__DIR__ . "/../templates/");
+$pdo = new \PDO(
+	"mysql:host=mariadb;dbname=app;charset=utf8",
+	"root",
+	"my-secret-pw",
+	[\PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION]
+);
 
 switch($_SERVER["REQUEST_URI"]) {
 	case "/":
 		(new mineichen\Controller\IndexController($tmpl))->homepage();
 		break;
 	case "/login":
-		(new mineichen\Controller\LoginController($tmpl))->showLogin();
+		$cnt = new mineichen\Controller\LoginController($tmpl, $pdo);
+		if($_SERVER["REQUEST_METHOD"] === "GET") {
+			$cnt->showLogin();
+		} else {
+			$cnt->login($_POST);
+		}
 		break;
 	default:
 		$matches = [];
