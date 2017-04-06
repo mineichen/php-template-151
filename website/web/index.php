@@ -11,6 +11,9 @@ $pdo = new \PDO(
 	"my-secret-pw",
 	[PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
 );
+$loginService = new mineichen\Service\Login\LoginPdoService($pdo);
+
+
 
 switch($_SERVER["REQUEST_URI"]) {
 	case "/":
@@ -20,7 +23,7 @@ switch($_SERVER["REQUEST_URI"]) {
 		echo "Test";
 		break;
 	case "/login":
-		$ctr = new mineichen\Controller\LoginController($tmpl, $pdo);
+		$ctr = new mineichen\Controller\LoginController($tmpl, $pdo, $loginService);
 		if($_SERVER["REQUEST_METHOD"] == "GET") {
 			$ctr->showLogin();
 		} else {
