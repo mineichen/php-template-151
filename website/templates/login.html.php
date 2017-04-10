@@ -8,7 +8,7 @@
 	<form method="POST">
 		<label>
 			Email:
-			<input type="email" name="email" />
+			<input type="email" name="email" value="<?= htmlentities((isset($email)) ? $email : "") ?>"/>
 		</label>
 		<label>
 			Password:
