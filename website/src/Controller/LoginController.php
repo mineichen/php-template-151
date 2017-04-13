@@ -3,6 +3,7 @@
 namespace mineichen\Controller;
 
 use mineichen\SimpleTemplateEngine;
+use mineichen\Service\Login\LoginService;
 
 class LoginController 
 {
@@ -11,14 +12,16 @@ class LoginController
    */
   private $template;
   private $pdo;
+  private $loginService;
   
   /**
    * @param mineichen\SimpleTemplateEngine
    */
-  public function __construct(SimpleTemplateEngine $template, \PDO $pdo)
+  public function __construct(SimpleTemplateEngine $template, \PDO $pdo, LoginService $loginService)
   {
      $this->template = $template;
      $this->pdo = $pdo;
+     $this->loginService = $loginService;
   }
   
   public function showLogin()
