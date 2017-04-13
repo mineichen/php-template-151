@@ -11,23 +11,16 @@ class LoginController
    * @var ihrname\SimpleTemplateEngine Template engines to render output
    */
   private $template;
-  
-  /**
-   * @var PDO
-   */
-  private $pdo;
-  
-  
+ 
   private $loginService;
 
   /**
    * @param ihrname\SimpleTemplateEngine
    * @param PDO
    */
-  public function __construct(SimpleTemplateEngine $template, \PDO $pdo, LoginService $loginService)
+  public function __construct(SimpleTemplateEngine $template, LoginService $loginService)
   {
      $this->template = $template;
-     $this->pdo = $pdo;
      $this->loginService = $loginService;
   }
   
@@ -42,17 +35,29 @@ class LoginController
   		return;
   	}
   	
-  	$stmt = $this->pdo->prepare("SELECT * FROM user WHERE email=? AND password=?");
-  	$stmt->bindValue(1, $data["email"]);
-  	$stmt->bindValue(2, $data["password"]);
-  	$stmt->execute();
-  	
-  	if($stmt->rowCount() === 1) {
-  		$_SESSION["email"] = $data["email"];
+  	if($this->loginService->authenticate($data["email"], $data["password"])) {
   		header('Location: /');
   	} else {
-  		echo $this->template->render("login.html.php", ["email" => $data["email"]]);
+  		echo $this->template->render("login.html.php", [
+  			"email" => $data["email"]
+  		]);
   	}
   	
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

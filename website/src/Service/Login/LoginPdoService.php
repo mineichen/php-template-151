@@ -22,7 +22,7 @@ class LoginPdoService implements LoginService
         $stmt->execute();
 
         if($stmt->rowCount() === 1) {
-                $_SESSION["email"] = $data["email"];
+            $_SESSION["email"] = $username;
             return true;
         } else {
             return false;
