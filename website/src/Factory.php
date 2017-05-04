@@ -15,10 +15,17 @@ class Factory
 		return new SimpleTemplateEngine(__DIR__ . "/../templates/");
 	}
 	
+	private function getTwigEngine()
+	{
+		$loader = new \Twig_Loader_Filesystem(__DIR__ . "/../templates/");
+		
+		return new \Twig_Environment($loader);
+	}
+	
 	public function getIndexController()
 	{
 		return new Controller\IndexController(
-			$this->getTemplateEngine()		
+			$this->getTwigEngine()		
 		);
 	}
 	
