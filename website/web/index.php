@@ -1,9 +1,5 @@
 <?php
 
-error_reporting(E_ALL);
-session_start();
-
-
 require_once("../vendor/autoload.php");
 $factory = mineichen\Factory::createFromIniFile(__DIR__ . "/../config.ini");
 
