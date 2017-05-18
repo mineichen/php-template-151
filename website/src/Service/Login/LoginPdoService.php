@@ -1,5 +1,5 @@
 <?php
-namespace ihrname\Service\Login;
+namespace snoozebaumer\Service\Login;
 class LoginPdoService implements LoginService
 {
 	/**

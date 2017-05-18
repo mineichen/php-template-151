@@ -1,5 +1,5 @@
 <?php
-namespace ihrname;
+namespace snoozebaumer;
 class Factory
 {
 	private $config;

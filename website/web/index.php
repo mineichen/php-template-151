@@ -4,7 +4,7 @@ session_start();
 //echo __DIR__; die();
 require_once("../vendor/autoload.php");
 $config = parse_ini_file(__DIR__ . "/../config.ini", true);
-$factory = new ihrname\Factory($config);
+$factory = new snoozebaumer\Factory($config);
 switch($_SERVER["REQUEST_URI"]) {
 	case "/":
 		$factory->getIndexController()->homepage();

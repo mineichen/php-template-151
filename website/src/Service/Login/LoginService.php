@@ -1,5 +1,5 @@
 <?php
-namespace ihrname\Service\Login;
+namespace snoozebaumer\Service\Login;
 interface LoginService
 {
 	public function authenticate($username, $password);

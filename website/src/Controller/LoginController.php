@@ -1,17 +1,17 @@
 <?php
-namespace ihrname\Controller;
-use ihrname\SimpleTemplateEngine;
-use ihrname\Service\Login\LoginService;
+namespace snoozebaumer\Controller;
+use snoozebaumer\SimpleTemplateEngine;
+use snoozebaumer\Service\Login\LoginService;
 class LoginController
 {
 	/**
-	 * @var ihrname\SimpleTemplateEngine Template engines to render output
+	 * @var snoozebaumer\SimpleTemplateEngine Template engines to render output
 	 */
 	private $template;
 
 	private $loginService;
 	/**
-	 * @param ihrname\SimpleTemplateEngine
+	 * @param snoozebaumer\SimpleTemplateEngine
 	 * @param PDO
 	 */
 	public function __construct(SimpleTemplateEngine $template, LoginService $loginService)

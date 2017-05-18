@@ -1,7 +1,7 @@
 
 <?php
-namespace ihrname\Controller;
-use ihrname\SimpleTemplateEngine;
+namespace snoozebaumer\Controller;
+use snoozebaumer\SimpleTemplateEngine;
 class IndexController
 {
 	/**
