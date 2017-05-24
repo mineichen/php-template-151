@@ -8,8 +8,10 @@ services:
       - upload:/var/www/upload/upload:ro
       - ${PWD}/website/web:/var/www/html:ro
       - ${PWD}/nginx.conf:/etc/nginx/conf.d/default.conf:ro 
+      - ${PWD}/ssl:/etc/nginx/ssl
     ports:
       - 80:80
+      - 443:443
     links:
       - fpm
   fpm:
