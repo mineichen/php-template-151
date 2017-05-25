@@ -29,8 +29,7 @@ class MineichenTest extends TestCase {
 	public function setUp()
 	{
 		$capabilities = array(
-			WebDriverCapabilityType::BROWSER_NAME => 'chrome', 
-			WebDriverCapabilityType::ACCEPT_SSL_CERTS => true
+			WebDriverCapabilityType::BROWSER_NAME => 'chrome'
 		);
 		$this->webDriver = RemoteWebDriver::create('http://selenium:4444/wd/hub', $capabilities);
 	}
