@@ -9,35 +9,38 @@ use Facebook\WebDriver\WebDriverCapabilities;
 /**
  * 
  * Start Selenium-Server before executeing phpunit. e.g. :
- * docker run --rm --network phptemplate151_fpm selenium/standalone-chrome
+ * docker run --rm --network phptemplate151_fpm --name selenium selenium/standalone-chrome
+ * 
+ * Run Tests with:
+ * docker-compose run --rm fpm ./vendor/phpunit/phpunit/phpunit
  * 
  * @author mineichen
  */
 class MineichenTest extends TestCase {
 
-	/**
-	 * @var \RemoteWebDriver
-	 */
-	private $webDriver;
+    /**
+     * @var \RemoteWebDriver
+     */
+    private $webDriver;
 
-	private $url = 'http://nginx';
-	
-	
-	public function setUp()
-	{
-		$capabilities = array(WebDriverCapabilityType::BROWSER_NAME => 'chrome');
-		$this->webDriver = RemoteWebDriver::create('http://172.18.3:4444/wd/hub', $capabilities);
-	}
+    private $url = 'http://nginx';
 
-	public function testHelloPageContainsName()
-	{
-		$page = $this->webDriver->get($this->url . "/hello/World");
-		$el = $this->webDriver->findElement(WebDriverBy::id('greeting-name'));
-		$this->assertEquals("World", $el->getText());	
-	    $this->assertContains('Hello', $this->webDriver->getTitle());
-	    
-	    $this->webDriver->findElement(WebDriverBy::cssSelector("body a"))->click();
-	    $this->assertContains("https://www.google.ch", $this->webDriver->getCurrentUrl());
-	}
+    public function setUp()
+    {
+        $capabilities = array(
+            WebDriverCapabilityType::BROWSER_NAME => 'chrome'
+        );
+        $this->webDriver = RemoteWebDriver::create('http://selenium:4444/wd/hub', $capabilities);
+    }
 
+    public function testHelloPageContainsName()
+    {
+        $page = $this->webDriver->get($this->url . "/hello/World");
+        $el = $this->webDriver->findElement(WebDriverBy::id('greeting-name'));
+        $this->assertEquals("World", $el->getText());
+        $this->assertContains('Hello', $this->webDriver->getTitle());
+
+        $this->webDriver->findElement(WebDriverBy::cssSelector("body a"))->click();
+        $this->assertContains("https://www.google.ch", $this->webDriver->getCurrentUrl());
+    }
 }
