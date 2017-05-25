@@ -11,6 +11,9 @@ use Facebook\WebDriver\WebDriverCapabilities;
  * Start Selenium-Server before executeing phpunit. e.g. :
  * docker run --rm --network phptemplate151_fpm --name selenium selenium/standalone-chrome
  * 
+ * Run Tests with:
+ * docker-compose run --rm fpm ./vendor/phpunit/phpunit/phpunit
+ * 
  * @author mineichen
  */
 class MineichenTest extends TestCase {
