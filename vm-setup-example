@@ -1,0 +1,36 @@
+Download minimal Ubuntu and create VM 
+
+#install WINDOW Manager
+sudo apt-get -y install xdm gnome-core xorg human-theme
+sudo /etc/init.d/gdm3 start
+
+#install vmware-tools
+sudo apt-get install open-vm-tools-desktop
+
+
+
+#install Docker
+sudo apt-get install -y --no-install-recommends \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common \
+&& curl -fsSL https://apt.dockerproject.org/gpg | sudo apt-key add - \
+&& sudo add-apt-repository \
+       "deb https://apt.dockerproject.org/repo/ \
+       ubuntu-$(lsb_release -cs) \
+       main" \
+&& sudo apt-get update \
+&& sudo apt-get -y install docker-engine
+
+
+
+#install docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.11.1/docker-compose-$(uname -s)-$(uname -m)" \
+    -o /usr/local/bin/docker-compose \
+    && chmod +x /usr/local/bin/docker-compose
+
+#install google-chrome
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - \
+    && sudo sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list' \
+    && sudo apt-get update && sudo apt-get install google-chrome-stable
