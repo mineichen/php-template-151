@@ -16,6 +16,7 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile_php
+    image: 'mineichen/php:2'
     networks:
     - fpm
     - db
