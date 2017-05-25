@@ -9,7 +9,7 @@ use Facebook\WebDriver\WebDriverCapabilities;
 /**
  * 
  * Start Selenium-Server before executeing phpunit. e.g. :
- * docker run --rm --network phptemplate151_fpm selenium/standalone-chrome
+ * docker run --rm --network phptemplate151_fpm --name selenium selenium/standalone-chrome
  * 
  * @author mineichen
  */
@@ -25,8 +25,11 @@ class MineichenTest extends TestCase {
 	
 	public function setUp()
 	{
-		$capabilities = array(WebDriverCapabilityType::BROWSER_NAME => 'chrome');
-		$this->webDriver = RemoteWebDriver::create('http://172.18.3:4444/wd/hub', $capabilities);
+		$capabilities = array(
+			WebDriverCapabilityType::BROWSER_NAME => 'chrome', 
+			WebDriverCapabilityType::ACCEPT_SSL_CERTS => true
+		);
+		$this->webDriver = RemoteWebDriver::create('http://selenium:4444/wd/hub', $capabilities);
 	}
 
 	public function testHelloPageContainsName()
