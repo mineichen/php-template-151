@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block content %}
-	Das kommt aus meinem ersten Template<br />
-	Hallo {{ name|raw }}
+    Hallo <span id="greeting-name">{{ name }}</span>
+    <a href="https://google.ch" >Mehr Infos auf Google</a>
 {% endblock %}
 
 {% block title %}
