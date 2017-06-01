@@ -2,11 +2,10 @@ FROM php:7.1-fpm-alpine
 RUN cd /tmp \
   && mkdir "/tmp/php-sessions" \
   && chown -R www-data:www-data "/tmp/php-sessions" \
-  && apk add --no-cache libexif-dev autoconf autoconf gcc g++ imagemagick-dev libtool make \
-  && docker-php-ext-install opcache pdo pdo_mysql exif \
+  && apk add --no-cache zlib-dev libexif-dev imagemagick-dev autoconf autoconf gcc g++ libtool make \
+  && docker-php-ext-install opcache pdo pdo_mysql zip exif \
   && echo "\n" | pecl install imagick \
   && docker-php-ext-enable imagick \
-  && apk del autoconf g++ libtool make
-
-RUN curl https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer | php -- --quiet \
+  && apk del autoconf g++ libtool make \
+  && curl https://raw.githubusercontent.com/composer/getcomposer.org/1b137f8bf6db3e79a38a5bc45324414a6b1f9df2/web/installer | php -- --quiet \
   && mv composer.phar /usr/local/bin/composer
