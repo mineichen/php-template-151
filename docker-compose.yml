@@ -5,6 +5,7 @@ services:
     networks:
     - fpm
     volumes:
+      - ${PWD}/ssl:/etc/nginx/ssl:ro
       - upload:/var/www/upload/upload:ro
       - ${PWD}/website/web:/var/www/html:ro
       - ${PWD}/nginx.conf:/etc/nginx/conf.d/default.conf:ro 
