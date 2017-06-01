@@ -18,31 +18,29 @@ use Facebook\WebDriver\WebDriverCapabilities;
  */
 class MineichenTest extends TestCase {
 
-	/**
-	 * @var \RemoteWebDriver
-	 */
-	private $webDriver;
+    /**
+     * @var \RemoteWebDriver
+     */
+    private $webDriver;
 
-	private $url = 'http://nginx';
-	
-	
-	public function setUp()
-	{
-		$capabilities = array(
-			WebDriverCapabilityType::BROWSER_NAME => 'chrome'
-		);
-		$this->webDriver = RemoteWebDriver::create('http://selenium:4444/wd/hub', $capabilities);
-	}
+    private $url = 'http://nginx';
 
-	public function testHelloPageContainsName()
-	{
-		$page = $this->webDriver->get($this->url . "/hello/World");
-		$el = $this->webDriver->findElement(WebDriverBy::id('greeting-name'));
-		$this->assertEquals("World", $el->getText());	
-	    $this->assertContains('Hello', $this->webDriver->getTitle());
-	    
-	    $this->webDriver->findElement(WebDriverBy::cssSelector("body a"))->click();
-	    $this->assertContains("https://www.google.ch", $this->webDriver->getCurrentUrl());
-	}
+    public function setUp()
+    {
+        $capabilities = array(
+            WebDriverCapabilityType::BROWSER_NAME => 'chrome'
+        );
+        $this->webDriver = RemoteWebDriver::create('http://selenium:4444/wd/hub', $capabilities);
+    }
 
+    public function testHelloPageContainsName()
+    {
+        $page = $this->webDriver->get($this->url . "/hello/World");
+        $el = $this->webDriver->findElement(WebDriverBy::id('greeting-name'));
+        $this->assertEquals("World", $el->getText());
+        $this->assertContains('Hello', $this->webDriver->getTitle());
+
+        $this->webDriver->findElement(WebDriverBy::cssSelector("body a"))->click();
+        $this->assertContains("https://www.google.ch", $this->webDriver->getCurrentUrl());
+    }
 }
