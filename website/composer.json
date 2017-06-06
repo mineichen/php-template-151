@@ -1,13 +1,14 @@
 {
-    "name": "ihrname/Datenbankprojekt",
+    "name": "Datenbankprojekt",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "ihrname\\": "src/"
+            "mineichen\\": "src/"
         }
     },
     "require": {
-        "swiftmailer/swiftmailer": "v5.4.*"
+        "swiftmailer/swiftmailer": "v5.4.*",
+        "twig/twig": "~2.0"
     },
     "autoload-dev": {
         "psr-4": {
