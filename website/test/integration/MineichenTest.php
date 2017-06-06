@@ -38,7 +38,6 @@ class MineichenTest extends TestCase {
         $page = $this->webDriver->get($this->url . "/hello/World");
         $el = $this->webDriver->findElement(WebDriverBy::id('greeting-name'));
         $this->assertEquals("World", $el->getText());
-        $this->assertContains('Hello', $this->webDriver->getTitle());
 
         $this->webDriver->findElement(WebDriverBy::cssSelector("body a"))->click();
         $this->assertContains("https://www.google.ch", $this->webDriver->getCurrentUrl());
