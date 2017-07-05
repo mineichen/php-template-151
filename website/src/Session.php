@@ -30,7 +30,7 @@ class Session {
 	public function addFlash($tag, $message) {
 		if(array_key_exists($tag, $_SESSION)) {
 			if(is_array($_SESSION[$tag])) {
-				$tag[] = $message;
+				$_SESSION[$tag][] = $message;
 			} else {
 				throw new \Exception(sprintf("Session already contains single value in key '%s'", $tag));
 			}
