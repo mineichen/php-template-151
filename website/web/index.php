@@ -6,9 +6,19 @@ require_once("../vendor/autoload.php");
 $tmpl = new ihrname\SimpleTemplateEngine(__DIR__ . "/../templates/");
 
 switch($_SERVER["REQUEST_URI"]) {
-	case "/":
+        case "/":
 		(new ihrname\Controller\IndexController($tmpl))->homepage();
 		break;
+        case "/form":
+                
+                $ctr = (new ihrname\Controller\IndexController($tmpl));
+	        $ctr->showForm();
+		break;	
+       case "/formpost":
+                $ctr = (new ihrname\Controller\IndexController($tmpl));
+                $ctr->processForm($_POST);
+		
+                break;
 	case "/test/upload":
 		if(file_put_contents(__DIR__ . "/../../upload/test.txt", "Mein erster Upload")) {
 			echo "It worked";

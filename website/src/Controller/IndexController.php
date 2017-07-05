@@ -19,6 +19,18 @@ class IndexController
      $this->template = $template;
   }
 
+  public function showForm()
+  {
+    echo $this->template->render("form.html.php");
+  }
+
+  public function processForm(array $data)
+  { 
+
+    echo $this->template->render("hello.html.php", [
+       'previous' => $data["text"]
+    ]);
+  }
   public function homepage() {
     echo "INDEX";
   }
