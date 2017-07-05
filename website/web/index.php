@@ -10,15 +10,13 @@ switch($_SERVER["REQUEST_URI"]) {
 		(new ihrname\Controller\IndexController($tmpl))->homepage();
 		break;
         case "/form":
-                
-                $ctr = (new ihrname\Controller\IndexController($tmpl));
-	        $ctr->showForm();
-		break;	
-       case "/formpost":
-                $ctr = (new ihrname\Controller\IndexController($tmpl));
-                $ctr->processForm($_POST);
-		
-                break;
+            if($_SERVER["REQUEST_METHOD"] == "GET") {
+            	(new ihrname\Controller\IndexController($tmpl))->showForm();
+            } else {
+            	(new ihrname\Controller\IndexController($tmpl))->processForm($_POST);
+            }
+        	  
+            break;
 	case "/test/upload":
 		if(file_put_contents(__DIR__ . "/../../upload/test.txt", "Mein erster Upload")) {
 			echo "It worked";

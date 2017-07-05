@@ -7,10 +7,9 @@
   <title>My Form</title>
 </head>
 <body>
-  <form method="POST" action="/formpost" action="/formpost" action="/formpost" action="/formpost" action="/formpost" action="/formpost" action="/formpost" action="/formpost" action="/formpost">
-    <input type="text" name="text" value="<?= (isset($previous)) ? htmlspecialchars($previous) : '' ?>"/>
+  <form method="POST">
+    <input type="text" name="text" value="<?= (isset($text)) ? htmlspecialchars($text) : '' ?>"/>
     <input type="submit" value="Senden" />
   </form>
 </body>
-
 </html>

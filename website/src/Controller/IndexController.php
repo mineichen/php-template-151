@@ -26,11 +26,22 @@ class IndexController
 
   public function processForm(array $data)
   { 
-
-    echo $this->template->render("hello.html.php", [
-       'previous' => $data["text"]
+  	if(!array_key_exists("text", $data)) {
+  		echo $this->template->render("form.html.php");
+  		return;
+  	}
+  	
+  	file_put_contents(
+  		"log.txt", 
+  		$data["text"] . PHP_EOL, 
+  		FILE_APPEND
+  	);
+  	
+    echo $this->template->render("form.html.php", [
+       'text' => $data["text"]
     ]);
   }
+  
   public function homepage() {
     echo "INDEX";
   }
